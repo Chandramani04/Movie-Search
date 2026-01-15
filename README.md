@@ -75,7 +75,13 @@ This application uses the [OMDB API](http://www.omdbapi.com/) for fetching movie
 
 - **API Endpoint**: `https://www.omdbapi.com/`
 - **API Key**: Included in the code (for demonstration purposes)
-- **Note**: For production use, consider securing your API key
+
+### ⚠️ Security Note
+The API key is currently exposed in the client-side code. For production applications, you should:
+- Use environment variables to store sensitive information
+- Implement a backend service to handle API requests
+- Never commit API keys to public repositories
+- Consider using the OMDB API key management features to restrict usage
 
 ## 📁 Project Structure
 
