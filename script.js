@@ -1,4 +1,5 @@
-const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=1fd9a2ed";
+// Use HTTPS to avoid mixed-content errors when the site is served over HTTPS (e.g. Netlify)
+const API_URL = "https://www.omdbapi.com/?apikey=1fd9a2ed";
 // taking user input from search box
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
@@ -19,7 +20,8 @@ async function fetchMovieData(movieTitle) {
     try {
         // omdb api gives us a search parameter to search for movies by their title , syntax :   append &s=movie_title at the end of the url
         // by default , api returns only 1 page , to get more results we can append &page=2 or &page=3 and so on , each page contains 10 results
-        const response = await fetch(`${API_URL}&s=${movieTitle}&page=1`);
+        // encode the movie title to handle spaces and special characters
+        const response = await fetch(`${API_URL}&s=${encodeURIComponent(movieTitle)}&page=1`);
         if (!response.ok) { // Check if the response is ok (status code 200-299) 
             // response object has an ok property which is true if the status code is in the range 200-299 
             throw new Error("Network response was not ok");
